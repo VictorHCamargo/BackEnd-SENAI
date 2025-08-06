@@ -1,5 +1,5 @@
 <?php
-    $nome = "Motta";
+    $nome = "";
     $nota1 = 9;
     $nota2 = 0;
     $media = ($nota1 + $nota2)/2;
