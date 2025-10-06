@@ -18,6 +18,7 @@ dificuldades. No fim da jornada, eles celebram ao comer juntos. -->
             echo "Está chovendo...";
         }
     }
+    // Way e personagens temos uma agregação, no qual personagens e o todo e o way e apenas uma parte, mas pode existir independente do personagens
 
 
 

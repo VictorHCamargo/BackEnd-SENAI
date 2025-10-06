@@ -21,4 +21,8 @@ sangue para ajudar outras. -->
             echo "Doandno sangue....";
         }
     }
+    class Pessoas extends Terra { 
+
+    }
+    // Terra e Pessoas demonstra uma relação de composição no qual as pessoas deixam de existir se terra não existir.
 ?>

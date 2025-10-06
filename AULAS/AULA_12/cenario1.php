@@ -6,26 +6,44 @@ Terra, eles poderão comer comidas típicas e nadar em rios ou praias. -->
     class Pessoas {
         private String $paisVisita;
         public function __construct($paisVisita){
-            $this->paisVisita = $paisVisita;
+            $this->setVisita($paisVisita);
+        }
+        public function setVisita($paisVisita) {
+            $this->paisVisita = ucwords(strtolower($paisVisita));
+        }
+        public function getVisita() {
+            return $this->paisVisita;
         }
         public function visitar()  {
-            echo "Visitando...  " . $this->paisVisita;
+            echo "Visitando...  " . $this->getVisita();
         }
     }
-    class Lugares {
+    class Lugares { 
         private String $comidaTipica;
         private String $nadandoEm;
         public function __construct($comidaTipica,$nadandoEm){
-            $this->comidaTipica = $comidaTipica;
-            $this->nadandoEm = $nadandoEm;
+            $this->setComida($comidaTipica);
+            $this->setNadando($nadandoEm);
+        }
+        public function setComida($comidaTipica) {
+            $this->comidaTipica = ucwords(strtolower($comidaTipica));
+        }
+        public function getComida() {
+            return $this->comidaTipica;
+        }
+        public function setNadando($nadandoEm) {
+            $this->nadandoEm = ucwords(strtolower($nadandoEm));
+        }
+        public function getNadando() {
+            return $this->nadandoEm;
         }
         public function comer() {
-            echo "Comendo... " . $this->comidaTipica;
+            echo "Comendo... " . $this->getComida();
         }
         public function nadar() {
-            echo "Nadando em... ". $this->nadandoEm;
+            echo "Nadando em... ". $this->getNadando();
         }
     }
 
-
+    // Lugares associas pessoas, pois pessoas e lugares podem existir separadamente
 ?>
