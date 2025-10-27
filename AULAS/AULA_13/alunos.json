@@ -1,0 +1,32 @@
+{
+    "2": {
+        "id": 2,
+        "nome": "Luiza",
+        "curso": "marketing digital"
+    },
+    "4": {
+        "id": 4,
+        "nome": "Oliver",
+        "curso": "eletrica"
+    },
+    "5": {
+        "id": 5,
+        "nome": "Amanda",
+        "curso": "logistica"
+    },
+    "7": {
+        "id": 7,
+        "nome": "Joana",
+        "curso": "eletrica"
+    },
+    "8": {
+        "id": 8,
+        "nome": "Miguel",
+        "curso": "designer"
+    },
+    "9": {
+        "id": 9,
+        "nome": "Redondo",
+        "curso": "eletroeletr\u00f4nica"
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "003": {
+        "codigo": "003",
+        "preco": 67.75,
+        "nome": "Queijo Brie"
+    },
+    "004": {
+        "codigo": "004",
+        "preco": 25.9,
+        "nome": "Iogurte Grego"
+    },
+    "005": {
+        "codigo": "005",
+        "preco": 4.1,
+        "nome": "Guaran\u00e1 Jesus"
+    },
+    "006": {
+        "codigo": "006",
+        "preco": 12.75,
+        "nome": "Bolacha Bono"
+    },
+    "007": {
+        "codigo": "007",
+        "preco": 9.99,
+        "nome": "Desinfetante Barbarex"
+    },
+    "008": {
+        "codigo": "008",
+        "preco": 26.19,
+        "nome": "Prestobarba Bic"
+    }
+}
