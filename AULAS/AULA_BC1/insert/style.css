@@ -1,0 +1,175 @@
+/* Estilo geral do corpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9ecef; /* Fundo cinza bem claro */
+    color: #343a40; /* Cor de texto escura */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    padding-top: 50px;
+    margin: 0;
+}
+
+/* Container do Formulário */
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 400px; /* Limita a largura do formulário */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os elementos do formulário */
+    margin-bottom: 20px;
+}
+
+/* Estilo para as etiquetas (labels) */
+label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: -5px; /* Ajusta o espaço entre a label e o input */
+}
+
+/* Estilo para os campos de input (Nome e Email) */
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efeito ao focar nos inputs */
+input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra de foco azul */
+    outline: none; /* Remove a borda padrão do navegador */
+}
+
+/* Estilo para o botão de Enviar */
+button[type="submit"] {
+    background-color: #28a745; /* Verde para ação de envio/sucesso */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+/* Efeito ao passar o mouse e clicar no botão */
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+button[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* Estilo para o link "Lista" */
+a[href="listar.php"] {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff; /* Azul para link de navegação */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+a[href="listar.php"]:hover {
+    background-color: #0056b3;
+}
+
+/* Título */
+h2 {
+    color: #007bff; /* Azul primário */
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Tabela */
+table {
+    width: 80%; /* Ocupa 80% da largura da tela */
+    margin: 0 auto; /* Centraliza a tabela */
+    border-collapse: collapse; /* Remove o espaçamento duplo das bordas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #fff; /* Fundo branco para a tabela */
+    border-radius: 8px;
+    overflow: hidden; 
+    margin-bottom: 40px;/* Garante que o raio de borda funcione nas células */
+}
+
+/* Cabeçalho da Tabela */
+th {
+    background-color: #007bff; /* Fundo azul primário */
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Células da Tabela */
+td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd; /* Linha divisória suave */
+}
+
+/* Efeito de Mouse-Over nas Linhas */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Linhas alternadas para melhor leitura */
+}
+
+tr:hover {
+    background-color: #e9ecef; /* Linha fica mais clara ao passar o mouse */
+    cursor: pointer;
+}
+
+/* Coluna de Ações */
+td:last-child {
+    text-align: center;
+    white-space: nowrap; /* Impede que os links quebrem a linha */
+}
+
+/* Links (Editar/Deletar) */
+a {
+    text-decoration: none; /* Remove sublinhado */
+    margin: 0 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+a[href*='editar'] {
+    color: #28a745; /* Cor verde para Editar */
+    border: 1px solid #28a745;
+}
+
+a[href*='deletar'] {
+    color: #dc3545; /* Cor vermelha para Deletar */
+    border: 1px solid #dc3545;
+}
+
+a:hover {
+    color: white;
+}
+
+a[href*='editar']:hover {
+    background-color: #28a745;
+}
+
+a[href*='deletar']:hover {
+    background-color: #dc3545;
+}
