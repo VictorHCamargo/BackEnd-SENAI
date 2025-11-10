@@ -1,20 +1,25 @@
 <?php
-// Confirmações de formulario
-require_once "../controller/bebidaController.php";
-if($_SERVER['REQUEST_METHOD']==='POST') {
-    $acao = $_POST['acao'] ?? '';
-    if($acao === 'criar') {
-        $controller->salvar(
-            $_POST['nome'],
-            $_POST['categoria'],
-            $_POST['volume'],
-            $_POST['valor'],
-            $_POST['qtde']
-        );
-    } elseif($acao === 'deletar') {
-        $controller->deletar($_POST['id']);;
+    namespace AULAS\AULA_15;
+    // Confirmações de formulario
+    require_once __DIR__ . "\\..\\controller\\bebidaController.php";
+
+    $controller = new bebidaController();
+    if($_SERVER['REQUEST_METHOD']==='POST') {
+        $acaoViaURL = $_GET['acao'];
+        $acao = $_POST['acao'] ?? "";
+        if($acao === 'criar') {
+            $controller->criar(
+                $_POST['nome'],
+                $_POST['categoria'],
+                $_POST['volume'],
+                $_POST['valor'],
+                $_POST['qtde']
+            );
+        } elseif($acaoViaURL === 'deletar') {
+            $controller->deletar($_GET['nome']);;
+        }
+        
     }
-}
 ?>
 <!-- Formulário em html  -->
 <!DOCTYPE html>
@@ -27,9 +32,9 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
 <body>
     <h1>Formulário para preenchimento de bebidas:</h1>
     <form method="POST">
-        <input type="hidden">
-        <input type="text" name="nome" id="nome" required placeholder="Nome da bebida">
-        <select name="categora" id="categoria">
+        <input type="hidden" name="acao" value="criar">
+        <input type="text" name="nome"  required placeholder="Nome da bebida">
+        <select name="categoria">
             <option value="">Selecione a categoria</option>
             <option value="Refrigerante">Refrigerante</option>
             <option value="Cerveja">Cerveja</option>
@@ -40,11 +45,27 @@ if($_SERVER['REQUEST_METHOD']==='POST') {
             <option value="Energetico">Energético</option>
             <!-- Categoria -->
         </select>
-        <input type="number" name="volume" id="volume" placeholder="Volume da bebida:" required>
-        <input type="number" name="valor" id="valor" step="0.01" placeholder="Valor em Reais (R$):" required>
-        <input type="number" name="qtde" id="qtde" placeholder="Quantidade em estoque" required>
-        <button type="submit">Cadastrar</button>
+        <input type="number" name="volume"  placeholder="Volume da bebida:" required>
+        <input type="number" name="valor"  step="0.01" placeholder="Valor em Reais (R$):" required>
+        <input type="number" name="qtde"  placeholder="Quantidade em estoque" required>
+        <button type="submit" id="button">Cadastrar</button>
     </form>
+    <h1>Lista de Bebidas</h1>
+    <table>
+        <thead>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Volume</th>
+            <th>Valor</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+            <?php
+            include "lista.php";
+            ?>
+        </tbody>
+    </table>
 </body>
 </html>
 

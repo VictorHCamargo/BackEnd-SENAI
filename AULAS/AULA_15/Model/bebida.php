@@ -1,7 +1,6 @@
 <?php
 namespace AULAS\AULA_15;
 class bebida {
-    private int $id;
 
     private String $nome;
     
@@ -17,7 +16,6 @@ class bebida {
     
 
     private float $valor;
-
     public function __construct($nome, $categoria, $volume, $qtde, $valor)
     {
         $this->setNome($nome);
@@ -26,6 +24,7 @@ class bebida {
         $this->setQtde($qtde);
         $this->setValor($valor);
     }
+
     public function getNome() {
         return $this->nome;
     }

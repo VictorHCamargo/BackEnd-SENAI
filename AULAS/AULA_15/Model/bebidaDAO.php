@@ -9,8 +9,8 @@ namespace AULAS\AULA_15;
                 $conteudoArquivo = file_get_contents($this->arquivoBebida);
                 $arquivoDados = json_decode($conteudoArquivo,true);
                 if($arquivoDados) {
-                    foreach($arquivoDados as $id =>$info){
-                        $this->bebidaArray[$id] = new bebida(
+                    foreach($arquivoDados as $nome =>$info){
+                        $this->bebidaArray[$nome] = new bebida(
                             $info['nome'],
                             $info['categoria'],
                             $info['volume'],
@@ -41,6 +41,10 @@ namespace AULAS\AULA_15;
             $this->bebidaArray[$bebida->getNome()] = $bebida;
             $this->salvarArquivo();
         }
+        //READ 
+        public function lerBebidas() {
+            return $this->bebidaArray;
+        }
         //UPDATE 
         public function atualizarBebidas($nome,$novoValor,$novoQtde) {
             if(isset($this->bebidaArray[$nome])) {
@@ -49,10 +53,7 @@ namespace AULAS\AULA_15;
             }
             $this->salvarArquivo();
         }
-        //READ 
-        public function lerBebidas() {
-            return $this->bebidaArray;
-        }
+        
         //DELETE 
         public function excluirBebida($nome){
             unset($this->bebidaArray[$nome]);

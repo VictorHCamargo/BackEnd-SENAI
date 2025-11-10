@@ -19,7 +19,7 @@ class bebidaController {
     }
     //Cadastra nova bebida
     public function criar($nome,$categoria,$volume,$valor,$qtde) {
-        $bebida = new bebida($nome,$categoria,$volume,$valor,$qtde);
+        $bebida = new bebida($nome,$categoria,$volume,$qtde,$valor);
         $this->dao->criarBebidas($bebida);
     }
     //Atualiza bebida existente

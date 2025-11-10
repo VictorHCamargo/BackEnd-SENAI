@@ -1,0 +1,44 @@
+{
+    "Motta": {
+        "nome": "Motta",
+        "categoria": "Cerveja",
+        "volume": 222,
+        "valor": 11,
+        "qtde": 22
+    },
+    "ruan": {
+        "nome": "ruan",
+        "categoria": "Cerveja",
+        "volume": 2243,
+        "valor": 12.1,
+        "qtde": 12
+    },
+    "\u00e1gua": {
+        "nome": "\u00e1gua",
+        "categoria": "Cerveja",
+        "volume": 200,
+        "valor": 25.9,
+        "qtde": 1111
+    },
+    "topeira": {
+        "nome": "topeira",
+        "categoria": "Agua",
+        "volume": 2222,
+        "valor": 112,
+        "qtde": 21
+    },
+    "0": {
+        "nome": "Motta",
+        "categoria": "Cerveja",
+        "volume": 222,
+        "valor": 11,
+        "qtde": 22
+    },
+    "Mottattt": {
+        "nome": "Mottattt",
+        "categoria": "Refrigerante",
+        "volume": 222221,
+        "valor": 111,
+        "qtde": 222
+    }
+}
