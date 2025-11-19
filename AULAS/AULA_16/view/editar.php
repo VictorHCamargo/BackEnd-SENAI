@@ -1,7 +1,7 @@
 <?php
-    namespace AULAS\AULA_15;
+    namespace AULAS\AULA_16;
     require_once __DIR__ . "\\..\\controller\\bebidaController.php";
-    $controller = new BebidaController();
+    $controller = new bebidaController();
     $nome = $_GET['nome'];
     $categoria = $_GET['categoria'];
     $volume = $_GET['volume'];

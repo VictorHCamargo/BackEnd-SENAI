@@ -1,5 +1,5 @@
 <?php
-namespace AULAS\AULA_15;
+namespace AULAS\AULA_16;
 require_once __DIR__ . "\\..\\controller\\bebidaController.php";
 $bebidas = $controller->ler();
 foreach($bebidas as $b => $bebida) {
