@@ -1,58 +1,64 @@
 <?php
 namespace AULAS\AULA_17;
-class Livro {
-    private String $livro;
-    private String $autor;
-    private String $genero;
-    private String $editora;
-    private int $ano;
 
-    public function __construct($livro,$autor,$genero,$editora,$ano){
-        $this->setLivro($livro);
-        $this->setAutor($autor);
-        $this->setGenero($genero);
-        $this->setEditora($editora);
-        $this->setAno($ano);
-    }
-    public function setLivro($livro){
-        $this->livro = $livro;
-    }
-    public function setAutor($autor){
+class Livro {
+    private $titulo;
+    private $autor;
+    private $ano;
+    private $genero;
+    private $quantidade;
+
+    public function __construct($titulo, $autor, $ano, $genero, $quantidade) {
+        $this->titulo = $titulo;
         $this->autor = $autor;
-    }
-    public function setGenero($genero){
-        $this->genero = $genero;
-    }
-    public function setEditora($editora){
-        $this->editora = $editora;
-    }
-    public function setAno($ano){
         $this->ano = $ano;
+        $this->genero = $genero;
+        $this->quantidade = $quantidade;
     }
-    public function getLivro(){
-        return $this->livro;
+
+    // Getters e Setters
+    public function getTitulo() {
+        return $this->titulo;
     }
-    public function getAutor(){
+
+    public function setTitulo($titulo) {
+        $this->titulo = $titulo;
+        return $this;
+    }
+
+    public function getAutor() {
         return $this->autor;
     }
-    public function getGenero(){
-        return $this->genero;
+
+    public function setAutor($autor) {
+        $this->autor = $autor;
+        return $this;
     }
-    public function getEditora(){
-        return $this->editora;
-    }
-    public function getAno(){
+
+    public function getAno() {
         return $this->ano;
     }
+
+    public function setAno($ano) {
+        $this->ano = $ano;
+        return $this;
+    }
+
+    public function getGenero() {
+        return $this->genero;
+    }
+
+    public function setGenero($genero) {
+        $this->genero = $genero;
+        return $this;
+    }
+
+    public function getQuantidade() {
+        return $this->quantidade;
+    }
+
+    public function setQuantidade($quantidade) {
+        $this->quantidade = $quantidade;
+        return $this;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-?>

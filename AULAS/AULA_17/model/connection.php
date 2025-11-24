@@ -12,9 +12,9 @@ class Connection {
             try {
                 // Ajuste seu usuário e senha aqui
                 $host = 'localhost';
-                $dbname = 'biblioteca';
+                $dbname = 'biblioteca_1';
                 $user = 'root';
-                $pass = 'senaisp';
+                $pass = '1234'; //1234 ou senaisp
 
                 $dsn_server = "mysql:host=$host;charset=utf8";
                 // Conecta ao MySQL

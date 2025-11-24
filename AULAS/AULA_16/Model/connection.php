@@ -13,7 +13,7 @@ class Connection {
                 $host = 'localhost';
                 $dbname = 'projeto_bebidas2';
                 $user = 'root';
-                $pass = 'senaisp';
+                $pass = '1234';
 
                 $dsn_server = "mysql:host=$host;charset=utf8";
                 // Conecta ao MySQL

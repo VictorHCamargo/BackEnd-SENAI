@@ -1,87 +1,96 @@
 <?php
 namespace AULAS\AULA_17;
-require_once __DIR__ . "\\connection.php";
 use PDO;
 
-class livroDao {
-    public $conn;
-    public function __construct(){
+require_once 'Livro.php';
+require_once 'Connection.php';
+
+class LivroDAO {
+    private $conn;
+
+    public function __construct() {
         $this->conn = Connection::getInstance();
 
+        // Cria a tabela se não existir
         $this->conn->exec("
-        CREATE TABLE IF NOT EXISTS livros (
-            id_livro int not null auto_increment primary key,
-            nome_livro varchar(128) not null,
-            nome_autor varchar(128) not null,
-            genero varchar(64) not null,
-            editora varchar(128) not null,
-            ano int not null
-        );");
-    }
-    public function criarLivros(Livro $livros){
-        $stmt = $this->conn->prepare("
-        INSERT INTO livros (nome_livro,nome_autor,genero,editora,ano)
-        VALUES (:nome_livro,:nome_autor,:genero,:editora,:ano");
-        $stmt->execute([
-            ':nome_livro'=>$livros->getLivro(),
-            ':nome_autor'=>$livros->getAutor(),
-            ':genero'=>$livros->getGenero(),
-            ':editora'=>$livros->getEditora(),
-            ':ano'=>$livros->getAno()
-        ]);
-    }
-    public function lerLivros(){
-        $stmt = $this->conn->prepare("SELECT * FROM livros");
-        $dados = [];
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $dados[]= new Livro(
-                $row['nome_livro'],
-                $row['nome_autor'],
-                $row['genero'],
-                $row['editora'],
-                $row['ano']
-            );
-        }
-        return $dados;
+            CREATE TABLE IF NOT EXISTS livros (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                titulo VARCHAR(200) NOT NULL UNIQUE,
+                autor VARCHAR(150) NOT NULL,
+                ano INT NOT NULL,
+                genero VARCHAR(100) NOT NULL,
+                quantidade INT NOT NULL )
+        ");
     }
 
-    public function atualizarLivros($novoLivro,$novoAutor,$novoGenero,$novoEditora,$novoAno) {
+    // CREATE
+    public function criarLivro(Livro $livro) {
         $stmt = $this->conn->prepare("
-        UPDATE livros
-        SET nome_livro = :livro, nome_autor = :autor,genero = :genero,editora = :editora, ano = :ano
-        WHERE nome_livro = :livro_original");
+            INSERT INTO livros (titulo, autor, ano, genero, quantidade)
+            VALUES (:titulo, :autor, :ano, :genero, :quantidade)
+        ");
         $stmt->execute([
-            ':livro'=>$novoLivro,
-            ':autor'=>$novoAutor,
-            ':genero'=>$novoGenero,
-            ':editora'=>$novoEditora,
-            ':ano'=>$novoAno
+            ':titulo' => $livro->getTitulo(),
+            ':autor' => $livro->getAutor(),
+            ':ano' => $livro->getAno(),
+            ':genero' => $livro->getGenero(),
+            ':quantidade' => $livro->getQuantidade()
         ]);
     }
-    public function excluirLivro($livro){
-        $stmt = $this->conn->prepare("DELETE FROM livros WHERE nome_livro = :livro");
+
+    // READ
+    public function lerLivros() {
+        $stmt = $this->conn->query("SELECT * FROM livros ORDER BY titulo");
+        $result = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = new Livro(
+                $row['titulo'],
+                $row['autor'],
+                $row['ano'],
+                $row['genero'],
+                $row['quantidade']
+            );
+        }
+        return $result;
+    }
+
+    // UPDATE
+    public function atualizarLivro($tituloOriginal, $novoTitulo, $autor, $ano, $genero, $quantidade) {
+        $stmt = $this->conn->prepare("
+            UPDATE livros
+            SET titulo = :novoTitulo, autor = :autor, ano = :ano, genero = :genero, quantidade = :quantidade
+            WHERE titulo = :tituloOriginal
+        ");
         $stmt->execute([
-            ':livro' => $livro
+            ':novoTitulo' => $novoTitulo,
+            ':autor' => $autor,
+            ':ano' => $ano,
+            ':genero' => $genero,
+            ':quantidade' => $quantidade,
+            ':tituloOriginal' => $tituloOriginal
         ]);
     }
-    public function buscarNome($livro) {
-        $stmt = $this->conn->prepare("SELECT * FROM livros WHERE nome_livro = :livro");
-        $stmt->execute([
-            'livro'=> $livro
-        ]);
-        $return = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($return){
+
+    // DELETE
+    public function excluirLivro($titulo) {
+        $stmt = $this->conn->prepare("DELETE FROM livros WHERE titulo = :titulo");
+        $stmt->execute([':titulo' => $titulo]);
+    }
+
+    // BUSCAR POR TITULO
+    public function buscarPorTitulo($titulo) {
+        $stmt = $this->conn->prepare("SELECT * FROM livros WHERE titulo = :titulo LIMIT 1");
+        $stmt->execute([':titulo' => $titulo]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row) {
             return new Livro(
-                $return['nome_livro'],
-                $return['nome_autor'],
-                $return['genero'],
-                $return['editora'],
-                $return['ano'],
+                $row['titulo'],
+                $row['autor'],
+                $row['ano'],
+                $row['genero'],
+                $row['quantidade']
             );
         }
         return null;
     }
 }
-
-
-?>
