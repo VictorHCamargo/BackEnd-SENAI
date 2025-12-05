@@ -1,8 +1,15 @@
 <?php
 namespace AULAS\AULA_BCsomativa;
 require_once __DIR__ . "\\..\\model\\connTable.php";
-$result = new connTable("CLIENTES");
-$dados = $result->select();
+$connCliente = new connTable("clientes");
+
+if($_SERVER['REQUEST_METHOD']== 'POST') {
+    $cliente = [
+        'id_cliente' => null
+    ];
+    $cliente['id_cliente'] = $_POST['id_cliente'];
+    $connCliente->delete($cliente,'id_cliente');
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +22,7 @@ $dados = $result->select();
 <body>
     <h1>Bem vindo á area de Clientes</h1>
     <div class="list-botoes">
-        <button onclick="navegarPara('cadastro.php?table=clientes')">Cadastrar</button>
+        <button onclick="navegarPara('cadastro.php')">Cadastrar</button>
         <button onclick="navegarPara('/../index.php')">Voltar</button>
     </div>
     <div class="information-list">
@@ -23,28 +30,36 @@ $dados = $result->select();
         <div class="list">
             <table>
                 <thead>
-                    <th>cep_cliente</th>
                     <th>id_cliente</th>
                     <th>nome_cliente</th>
+                    <th>cep_cliente</th>
                     <th>cpf_cliente</th>
                     <th>contato_cliente</th>
                     <th>ações</th>
                 </thead>
                 <tbody>
-                <?php foreach ($resultado as $linha): ?>
+                <?php if(!empty($connCliente->select())): ?>
+                <?php foreach ($connCliente->select() as $dados): ?>
                     <tr>
-                        <?php foreach ($linha as $valor): ?>
-                            <td><?= htmlspecialchars($valor) ?></td>
-                        <?php endforeach; ?>
+                        <td><?=$dados['id_cliente']?></td>
+                        <td><?=$dados['nome_cliente']?></td>
+                        <td><?=$dados['cep_cliente']?></td>
+                        <td><?=$dados['cpf_cliente']?></td>
+                        <td><?=$dados['contato_cliente']?></td>
                         <td>
-                            <form method="DELETE">
-                                <input type="text" name="id_cliente" value="<?= $linha['id_cliente'] ?>">
+                            <form method="POST" action="#">
+                                <input type="hidden" name="id_cliente" value="<?=$dados['id_cliente']?>">
                                 <button type="submit">Deletar</button>
                             </form>
-                            <button onclick="navegarPara('editar.php?table=clientes&table=clientes&id=<?= $linha['id_cliente'] ?>&tableDados=<?= $dados ?>')">Editar</button>
+                            <button onclick="navegarPara('cadastro.php?id=<?=$dados['id_cliente']?>')">Editar</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6">Não nenhum cliente cadastrado</td>
+                    </tr>
+                <?php endif ?>
                 </tbody>
             </table>
         </div>
